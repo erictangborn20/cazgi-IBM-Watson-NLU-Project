@@ -10,7 +10,7 @@ class App extends React.Component {
           sentimentOutput:[],
           sentiment:true
         }
-  
+
   renderTextArea = ()=>{
     document.getElementById("textinput").value = "";
     if(this.state.mode === "url") {
@@ -19,7 +19,7 @@ class App extends React.Component {
       sentimentOutput:[],
       sentiment:true
     })
-    } 
+    }
   }
 
   renderTextBox = ()=>{
@@ -46,16 +46,18 @@ class App extends React.Component {
     ret = axios.get(url);
     ret.then((response)=>{
 
-      //Include code here to check the sentiment and fomrat the data accordingly
+      //Include code here to check the sentiment and format the data accordingly
+      let result = response.data.result?.entities[0]?.sentiment.label;
 
-      this.setState({sentimentOutput:response.data});
-      let output = response.data;
-      if(response.data === "positive") {
-        output = <div style={{color:"green",fontSize:20}}>{response.data}</div>
-      } else if (response.data === "negative"){
-        output = <div style={{color:"red",fontSize:20}}>{response.data}</div>
+      //this.setState({sentimentOutput:response.data});
+      //let output = response.data;
+      let output = <div></div>
+      if(result === "positive") {
+        output = <div style={{color:"green",fontSize:20}}>{result}</div>
+      } else if (result === "negative"){
+        output = <div style={{color:"red",fontSize:20}}>{result}</div>
       } else {
-        output = <div style={{color:"orange",fontSize:20}}>{response.data}</div>
+        output = <div style={{color:"orange",fontSize:20}}>{result}</div>
       }
       this.setState({sentimentOutput:output});
     });
@@ -76,10 +78,10 @@ class App extends React.Component {
       this.setState({sentimentOutput:<EmotionTable emotions={response.data}/>});
   });
   }
-  
+
 
   render() {
-    return (  
+    return (
       <div className="App">
       <button className="btn btn-info" onClick={this.renderTextArea}>Text</button>
         <button className="btn btn-dark"  onClick={this.renderTextBox}>URL</button>
