@@ -3,7 +3,7 @@ import './bootstrap.min.css';
 
 class EmotionTable extends React.Component {
     render() {
-     let oEmotion = this.props.emotions.result?.entities[0]?.emotion;
+     let oEmotion = this.props.emotions.result.entities[0]?.emotion;
      if(oEmotion != null)
      {
       return (
@@ -11,6 +11,7 @@ class EmotionTable extends React.Component {
           {/*You can remove this line and the line below. */}
           {/*JSON.stringify(this.props.emotions)*/}
 
+          {JSON.stringify(oEmotion)}
           <table className="table table-bordered">
             <tbody>
             {
@@ -30,6 +31,6 @@ class EmotionTable extends React.Component {
        {
 		       return  <div></div>
        }
-     }
+     }    
 }
 export default EmotionTable;
