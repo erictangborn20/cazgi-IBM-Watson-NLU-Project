@@ -83,6 +83,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+      <h1>IBM Watson Natural Language Understanding</h1>
+      <p>Enter text or a URL and get the sentiment or emotion analysis.</p>
       <button className="btn btn-info" onClick={this.renderTextArea}>Text</button>
         <button className="btn btn-dark"  onClick={this.renderTextBox}>URL</button>
         <br/><br/>
